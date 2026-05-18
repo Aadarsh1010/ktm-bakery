@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ivory text-dark font-sans;
+  }
+  /* Focus visible ring for keyboard navigation */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-gold ring-offset-2 ring-offset-ivory;
+  }
+  /* Remove outline for mouse clicks */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+@layer utilities {
+  .font-playfair { font-family: 'Playfair Display', Georgia, serif; }
+  .font-dancing  { font-family: 'Dancing Script', cursive; }
+}
+
+/* Product card hover glow effect */
+.product-card {
+  will-change: transform;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(201, 136, 44, 0.25), 0 8px 30px rgba(59, 31, 14, 0.12);
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Smooth will-change for animated elements */
+[style*="will-change"] {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Loading skeleton animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #FDF6EC 25%, #F5D79E40 50%, #FDF6EC 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Skip to content link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: #3B1F0E;
+  color: #F5D79E;
+  font-weight: 600;
+  border-radius: 0 0 0.5rem 0;
+}
+.skip-link:focus {
+  top: 0;
+}
